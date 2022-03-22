@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessonStroage</title>
+</head>
+<body>
+    <!-- 
+        webStorage
+        存储内容大小一般支持5MB左右(不同浏览器可能还不一样)
+        浏览器端通过 Window. sessionStorage和 Window.localStorage属性来实现本地存储机制。
+        相关API:
+        xxxxxStorage.setItem('key','value')
+        xxxxxStorage.getItem('person')
+        xxxxxStorage.removeItem('key')
+        xxxxxStorage.clear()
+        备注:
+        SessionStorage存储的内容会随着浏览器窗口关闭而消失
+        LocalStorage存储的内容,需要手动清除才会消失
+        xxxxxStorage. getItem(xx)如果xxx对应的 value获取不到,那么 getltem的返回值是nul
+        JSON.parse(nul1)的结果依然是null
+     -->
+    <h1>sessonStroage</h1>
+    <button onclick="saveData()">点我保存一个数据</button>
+    <button onclick="readData()">点我读取一个数据</button>
+    <button onclick="deleteData()">点我删除一个数据</button>
+    <button onclick="deleteAllData()">点我清空数据</button>
+
+    <script>
+        let p = {name:'张三',age:18}
+
+        function saveData(){
+            window.localStorage.setItem('msg','hello!')
+            window.localStorage.setItem('person',JSON.stringify(p))
+        }
+        function readData(){
+           console.log( localStorage.getItem('msg'));
+
+           const res =  localStorage.getItem('person')
+           console.log(JSON.parse(res));
+        }
+        function deleteData(){
+            localStorage.removeItem('person')
+        }
+        function deleteAllData(){
+            localStorage.clear()
+        }
+    </script>
+</body>
+</html>
